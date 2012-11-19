@@ -1,6 +1,6 @@
 using System;
 
-namespace BullsAndCows
+namespace Lesson1
 {
     public class Program
     {
@@ -34,7 +34,7 @@ namespace BullsAndCows
         public static bool game(string guess, int[] num)
         {
             char[] guessed = guess.ToCharArray();
-            int bullsCount = 0, cowsCount = 0;
+            BullsAndCowsNumber result = new BullsAndCowsNumber();
 
             if (guessed.Length != 4)
             {
@@ -52,26 +52,26 @@ namespace BullsAndCows
                 }
                 if (curguess == num[i])
                 {
-                    bullsCount++;
+                    result.IncreaseBull();
                 }
                 else
                 {
                     for (int j = 0; j < 4; j++)
                     {
                         if (curguess == num[j])
-                            cowsCount++;
+                            result.IncreaseCow();
                     }
                 }
             }
 
-            if (bullsCount == 4)
+            if (result.bullsCount == 4)
             {
                 Console.WriteLine("Congratulations! You have won!");
                 return true;
             }
             else
             {
-                Console.WriteLine("Your Score is {0} bulls and {1} cows", bullsCount, cowsCount);
+                Console.WriteLine("Your Score is {0} bulls and {1} cows", result.bullsCount, result.cowsCount);
                 return false;
             }
         }
